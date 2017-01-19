@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CityStateLookupRequest USERID="xxxxxxx">
+    <ZipCode ID="5">
+        <Zip5>20770</Zip5>
+    </ZipCode>
+</CityStateLookupRequest>

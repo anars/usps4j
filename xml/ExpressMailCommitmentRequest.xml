@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ExpressMailCommitmentRequest USERID="xxxxx">
+    <OriginZIP>207</OriginZIP>
+    <DestinationZIP>11210</DestinationZIP>
+    <Date></Date>
+</ExpressMailCommitmentRequest>

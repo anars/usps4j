@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ExpressMailCommitmentResponse>
+    <OriginZIP>20770</OriginZIP>
+    <OriginCity>GREENBELT</OriginCity>
+    <OriginState>MD</OriginState>
+    <DestinationZIP>11210</DestinationZIP>
+    <DestinationCity>BROOKLYN</DestinationCity>
+    <DestinationState>NY</DestinationState>
+    <Date>05-Aug-2004</Date>
+    <Time>11:30 AM</Time>
+    <Commitment>
+        <CommitmentName>Next Day</CommitmentName>
+        <CommitmentTime>3:00 PM</CommitmentTime>
+        <CommitmentSequence>A0115</CommitmentSequence>
+        <Location>
+            <CutOff>6:00 PM</CutOff>
+            <Facility>EXPRESS MAIL COLLECTION BOX</Facility>
+            <Street>119 CENTER WAY</Street>
+            <City>GREENBELT</City>
+            <State>MD</State>
+            <Zip>20770</Zip>
+        </Location>
+        <Location>
+            <CutOff>3:00 PM</CutOff>
+            <Facility>EXPRESS MAIL COLLECTION BOX</Facility>
+            <Street>7500 GREENWAY CENTER DRIVE</Street>
+            <City>GREENBELT</City>
+            <State>MD</State>
+            <Zip>20770</Zip>
+        </Location>
+    </Commitment>
+    <Commitment>
+        <CommitmentName>Next Day</CommitmentName>
+        <CommitmentTime>12:00 PM</CommitmentTime>
+        <CommitmentSequence>A0112</CommitmentSequence>
+        <Location>
+            <CutOff>6:00 PM</CutOff>
+            <Facility>EXPRESS MAIL COLLECTION BOX</Facility>
+            <Street>119 CENTER WAY</Street>
+            <City>GREENBELT</City>
+            <State>MD</State>
+            <Zip>20770</Zip>
+        </Location>
+        <Location>
+            <CutOff>3:00 PM</CutOff>
+            <Facility>EXPRESS MAIL COLLECTION BOX</Facility>
+        </Location>
+    </Commitment>
+</ExpressMailCommitmentResponse>

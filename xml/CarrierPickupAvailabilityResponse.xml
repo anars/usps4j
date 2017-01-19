@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CarrierPickupAvailabilityResponse>
+    <FirmName>ABC Corp.</FirmName>
+    <SuiteOrApt>Suite 777</SuiteOrApt>
+    <Address2>1390 Market Street</Address2>
+    <Urbanization></Urbanization>
+    <City>HOUSTON</City>
+    <State>TX</State>
+    <ZIP5>77058</ZIP5>
+    <ZIP4>1234</ZIP4>
+    <DayOfWeek>Monday</DayOfWeek>
+    <Date>3/1/2004</Date>
+    <CarrierRoute>C</CarrierRoute>
+</CarrierPickupAvailabilityResponse>

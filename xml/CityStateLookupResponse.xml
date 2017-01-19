@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CityStateLookupResponse>
+    <ZipCode ID="5">
+        <Zip5>20770</Zip5>
+        <City>GREENBELT</City>
+        <State>MD</State>
+    </ZipCode>
+</CityStateLookupResponse>

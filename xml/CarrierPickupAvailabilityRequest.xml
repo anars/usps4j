@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CarrierPickupAvailabilityRequest USERID="XXXX">
+    <FirmName></FirmName>
+    <SuiteOrApt></SuiteOrApt>
+    <Address2>1390 Market Street</Address2>
+    <Urbanization></Urbanization>
+    <City></City>
+    <State></State>
+    <ZIP5>77058</ZIP5>
+    <ZIP4></ZIP4>
+</CarrierPickupAvailabilityRequest>

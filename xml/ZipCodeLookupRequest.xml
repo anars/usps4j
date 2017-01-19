@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ZipCodeLookupRequest USERID="xxxxxxx">
+    <Address ID="1">
+        <Address1></Address1>
+        <Address2>8 Wildwood Drive</Address2>
+        <City>Old Lyme</City>
+        <State>CT</State>
+    </Address>
+</ZipCodeLookupRequest>
