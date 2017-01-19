@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <AddressValidateRequest USERID="xxxxxxx">
+    <IncludeOptionalElements>true</IncludeOptionalElements>
+    <ReturnCarrierRoute>true</ReturnCarrierRoute>
     <Address ID="1">
+        <FirmName></FirmName>
         <Address1></Address1>
         <Address2>8 Wildwood Drive</Address2>
         <City>Old Lyme</City>
         <State>CT</State>
+        <Urbanization></Urbanization>
         <Zip5>06371</Zip5>
         <Zip4></Zip4>
     </Address>
