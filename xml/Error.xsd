@@ -3,11 +3,11 @@
     <xsd:element name="Error">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="Number" type="xsd:string"/>
-                <xsd:element name="Source" type="xsd:string"/>
-                <xsd:element name="Description" type="xsd:string"/>
-                <xsd:element name="HelpFile" type="xsd:string"/>
-                <xsd:element name="HelpContext" type="xsd:string"/>
+                <xsd:element name="Number" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="Source" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="HelpFile" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="HelpContext" type="xsd:string" minOccurs="0"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

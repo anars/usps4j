@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Error>
-    <Number></Number>
-    <Source></Source>
-    <Description></Description>
+    <Number>80040B1A</Number>
+    <Source>USPSCOM::DoAuth</Source>
+    <Description>Authorization failure.  Perhaps username and/or password is incorrect.</Description>
     <HelpFile></HelpFile>
     <HelpContext></HelpContext>
 </Error>

@@ -84,7 +84,7 @@
             <xsd:element name="Address2" type="xsd:string"/>
             <xsd:element name="City" type="xsd:string"/>
             <xsd:element name="State" type="state"/>
-            <xsd:element name="Urbanization" type="xsd:string"/>
+            <xsd:element name="Urbanization" type="xsd:string" minOccurs="0"/>
             <xsd:element name="Zip5" type="zip5"/>
             <xsd:element name="Zip4" type="zip4"/>
             <xsd:element name="DeliveryPoint" type="xsd:string" minOccurs="0"/>

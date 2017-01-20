@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xsd:include schemaLocation="Address.xsd"/>
+    <xsd:element name="CityStateLookupRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ZipCode" minOccurs="1" maxOccurs="5">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Zip5" type="zip5"/>
+                        </xsd:sequence>
+                        <xsd:attribute name="ID" type="xsd:integer"/>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="USERID" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
