@@ -87,6 +87,9 @@
             <xsd:element name="Urbanization" type="xsd:string"/>
             <xsd:element name="Zip5" type="zip5"/>
             <xsd:element name="Zip4" type="zip4"/>
+            <xsd:element name="DeliveryPoint" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="CarrierRoute" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ReturnText" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
         <xsd:attribute name="ID" type="xsd:integer"/>
     </xsd:complexType>
