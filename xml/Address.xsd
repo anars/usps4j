@@ -79,17 +79,14 @@
     </xsd:simpleType>
     <xsd:complexType name="AddressType">
         <xsd:sequence>
-            <xsd:element name="FirmName" type="xsd:string"/>
-            <xsd:element name="Address1" type="xsd:string"/>
-            <xsd:element name="Address2" type="xsd:string"/>
-            <xsd:element name="City" type="xsd:string"/>
-            <xsd:element name="State" type="state"/>
+            <xsd:element name="FirmName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Address1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Address2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="City" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="State" type="state" minOccurs="0"/>
             <xsd:element name="Urbanization" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="Zip5" type="zip5"/>
-            <xsd:element name="Zip4" type="zip4"/>
-            <xsd:element name="DeliveryPoint" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="CarrierRoute" type="xsd:string" minOccurs="0"/>
-            <xsd:element name="ReturnText" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Zip5" type="zip5" minOccurs="0"/>
+            <xsd:element name="Zip4" type="zip4" minOccurs="0"/>
         </xsd:sequence>
         <xsd:attribute name="ID" type="xsd:integer"/>
     </xsd:complexType>
