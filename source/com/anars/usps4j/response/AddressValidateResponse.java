@@ -41,12 +41,12 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "address" })
+@XmlType(name = "", propOrder = { "_address" })
 @XmlRootElement(name = "AddressValidateResponse")
 public class AddressValidateResponse {
 
     @XmlElement(name = "Address", required = true)
-    protected List<AddressValidateResponse.Address> address;
+    protected List<AddressValidateResponse.Address> _address;
 
     /**
      * Gets the value of the address property.
@@ -71,10 +71,10 @@ public class AddressValidateResponse {
      *
      */
     public List<AddressValidateResponse.Address> getAddress() {
-        if(address == null) {
-            address = new ArrayList<AddressValidateResponse.Address>();
+        if(_address == null) {
+            _address = new ArrayList<AddressValidateResponse.Address>();
         }
-        return this.address;
+        return this._address;
     }
 
     /**
@@ -99,16 +99,16 @@ public class AddressValidateResponse {
      *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = { "deliveryPoint", "carrierRoute", "returnText" })
+    @XmlType(name = "", propOrder = { "_deliveryPoint", "_carrierRoute", "_returnText" })
     public static class Address
         extends com.anars.usps4j.Address {
 
         @XmlElement(name = "DeliveryPoint")
-        protected String deliveryPoint;
+        protected String _deliveryPoint;
         @XmlElement(name = "CarrierRoute")
-        protected String carrierRoute;
+        protected String _carrierRoute;
         @XmlElement(name = "ReturnText")
-        protected String returnText;
+        protected String _returnText;
 
         /**
          * Gets the value of the deliveryPoint property.
@@ -119,7 +119,7 @@ public class AddressValidateResponse {
          *
          */
         public String getDeliveryPoint() {
-            return deliveryPoint;
+            return _deliveryPoint;
         }
 
         /**
@@ -131,7 +131,7 @@ public class AddressValidateResponse {
          *
          */
         public void setDeliveryPoint(String value) {
-            this.deliveryPoint = value;
+            this._deliveryPoint = value;
         }
 
         /**
@@ -143,7 +143,7 @@ public class AddressValidateResponse {
          *
          */
         public String getCarrierRoute() {
-            return carrierRoute;
+            return _carrierRoute;
         }
 
         /**
@@ -155,7 +155,7 @@ public class AddressValidateResponse {
          *
          */
         public void setCarrierRoute(String value) {
-            this.carrierRoute = value;
+            this._carrierRoute = value;
         }
 
         /**
@@ -167,7 +167,7 @@ public class AddressValidateResponse {
          *
          */
         public String getReturnText() {
-            return returnText;
+            return _returnText;
         }
 
         /**
@@ -179,7 +179,7 @@ public class AddressValidateResponse {
          *
          */
         public void setReturnText(String value) {
-            this.returnText = value;
+            this._returnText = value;
         }
     }
 }

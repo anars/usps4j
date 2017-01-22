@@ -1,6 +1,6 @@
 package com.anars.usps4j;
 
-import com.anars.usps4j.enums;
+import com.anars.usps4j.enums.State;
 
 import java.math.BigInteger;
 
@@ -39,28 +39,28 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AddressType", propOrder = { "firmName", "address1", "address2", "city", "state", "urbanization", "zip5", "zip4" })
+@XmlType(name = "AddressType", propOrder = { "_firmName", "_address1", "_address2", "_city", "_state", "_urbanization", "_zip5", "_zip4" })
 public class Address {
 
     @XmlElement(name = "FirmName")
-    protected String firmName;
+    protected String _firmName;
     @XmlElement(name = "Address1")
-    protected String address1;
+    protected String _address1;
     @XmlElement(name = "Address2")
-    protected String address2;
+    protected String _address2;
     @XmlElement(name = "City")
-    protected String city;
+    protected String _city;
     @XmlElement(name = "State")
     @XmlSchemaType(name = "string")
-    protected State state;
+    protected State _state;
     @XmlElement(name = "Urbanization")
-    protected String urbanization;
+    protected String _urbanization;
     @XmlElement(name = "Zip5")
-    protected String zip5;
+    protected String _zip5;
     @XmlElement(name = "Zip4")
-    protected String zip4;
+    protected String _zip4;
     @XmlAttribute(name = "ID")
-    protected BigInteger id;
+    protected int _id;
 
     /**
      * Gets the value of the firmName property.
@@ -71,7 +71,7 @@ public class Address {
      *
      */
     public String getFirmName() {
-        return firmName;
+        return (_firmName);
     }
 
     /**
@@ -82,8 +82,8 @@ public class Address {
      *     {@link String }
      *
      */
-    public void setFirmName(String value) {
-        this.firmName = value;
+    public void setFirmName(String firmName) {
+        _firmName = trim(firmName);
     }
 
     /**
@@ -95,7 +95,7 @@ public class Address {
      *
      */
     public String getAddress1() {
-        return address1;
+        return (_address1);
     }
 
     /**
@@ -106,8 +106,8 @@ public class Address {
      *     {@link String }
      *
      */
-    public void setAddress1(String value) {
-        this.address1 = value;
+    public void setAddress1(String address1) {
+        _address1 = trim(address1);
     }
 
     /**
@@ -119,7 +119,7 @@ public class Address {
      *
      */
     public String getAddress2() {
-        return address2;
+        return (_address2);
     }
 
     /**
@@ -130,8 +130,8 @@ public class Address {
      *     {@link String }
      *
      */
-    public void setAddress2(String value) {
-        this.address2 = value;
+    public void setAddress2(String address2) {
+        _address2 = trim(address2);
     }
 
     /**
@@ -143,7 +143,7 @@ public class Address {
      *
      */
     public String getCity() {
-        return city;
+        return (_city);
     }
 
     /**
@@ -154,8 +154,8 @@ public class Address {
      *     {@link String }
      *
      */
-    public void setCity(String value) {
-        this.city = value;
+    public void setCity(String city) {
+        _city = trim(city);
     }
 
     /**
@@ -167,7 +167,7 @@ public class Address {
      *
      */
     public State getState() {
-        return state;
+        return (_state);
     }
 
     /**
@@ -178,8 +178,8 @@ public class Address {
      *     {@link State }
      *
      */
-    public void setState(State value) {
-        this.state = value;
+    public void setState(State state) {
+        _state = state;
     }
 
     /**
@@ -191,7 +191,7 @@ public class Address {
      *
      */
     public String getUrbanization() {
-        return urbanization;
+        return (_urbanization);
     }
 
     /**
@@ -203,7 +203,7 @@ public class Address {
      *
      */
     public void setUrbanization(String value) {
-        this.urbanization = value;
+        this._urbanization = value;
     }
 
     /**
@@ -215,7 +215,7 @@ public class Address {
      *
      */
     public String getZip5() {
-        return zip5;
+        return (_zip5);
     }
 
     /**
@@ -226,8 +226,8 @@ public class Address {
      *     {@link String }
      *
      */
-    public void setZip5(String value) {
-        this.zip5 = value;
+    public void setZip5(String zip5) {
+        _zip5 = trim(zip5);
     }
 
     /**
@@ -239,7 +239,7 @@ public class Address {
      *
      */
     public String getZip4() {
-        return zip4;
+        return (_zip4);
     }
 
     /**
@@ -250,8 +250,8 @@ public class Address {
      *     {@link String }
      *
      */
-    public void setZip4(String value) {
-        this.zip4 = value;
+    public void setZip4(String zip4) {
+        _zip4 = trim(zip4);
     }
 
     /**
@@ -262,8 +262,8 @@ public class Address {
      *     {@link BigInteger }
      *
      */
-    public BigInteger getID() {
-        return id;
+    public int getID() {
+        return (_id);
     }
 
     /**
@@ -274,7 +274,15 @@ public class Address {
      *     {@link BigInteger }
      *
      */
-    public void setID(BigInteger value) {
-        this.id = value;
+    public void setID(int id) {
+        _id = id;
+    }
+
+    /**
+     * @param text
+     * @return
+     */
+    private String trim(String text) {
+        return (text.trim().replaceAll("\\s+", " "));
     }
 }
