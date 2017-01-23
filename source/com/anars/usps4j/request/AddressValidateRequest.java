@@ -4,8 +4,6 @@ import com.anars.usps4j.Address;
 
 import java.io.StringWriter;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="IncludeOptionalElements" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
  *         &lt;element name="ReturnCarrierRoute" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
- *         &lt;element name="Address" type="{}Address" maxOccurs="5"/&gt;
+ *         &lt;element name="Address" type="{}AddressType" maxOccurs="5"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="USERID" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
@@ -43,19 +41,19 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "_includeOptionalElements", "_returnCarrierRoute", "_address" })
+@XmlType(name = "", propOrder = { "includeOptionalElements", "returnCarrierRoute", "address" })
 @XmlRootElement(name = "AddressValidateRequest")
 public class AddressValidateRequest {
 
     private final transient Logger _logger = Logger.getLogger(getClass().getCanonicalName());
     @XmlElement(name = "IncludeOptionalElements")
-    protected Boolean _includeOptionalElements;
+    protected Boolean includeOptionalElements;
     @XmlElement(name = "ReturnCarrierRoute")
-    protected Boolean _returnCarrierRoute;
+    protected Boolean returnCarrierRoute;
     @XmlElement(name = "Address", required = true)
-    protected List<Address> _address;
+    protected Address address;
     @XmlAttribute(name = "USERID")
-    protected String _userid;
+    protected String userid;
 
     /**
      * Gets the value of the includeOptionalElements property.
@@ -66,7 +64,7 @@ public class AddressValidateRequest {
      *
      */
     public Boolean isIncludeOptionalElements() {
-        return _includeOptionalElements;
+        return includeOptionalElements;
     }
 
     /**
@@ -78,7 +76,7 @@ public class AddressValidateRequest {
      *
      */
     public void setIncludeOptionalElements(Boolean value) {
-        this._includeOptionalElements = value;
+        this.includeOptionalElements = value;
     }
 
     /**
@@ -90,7 +88,7 @@ public class AddressValidateRequest {
      *
      */
     public Boolean isReturnCarrierRoute() {
-        return _returnCarrierRoute;
+        return returnCarrierRoute;
     }
 
     /**
@@ -102,7 +100,7 @@ public class AddressValidateRequest {
      *
      */
     public void setReturnCarrierRoute(Boolean value) {
-        this._returnCarrierRoute = value;
+        this.returnCarrierRoute = value;
     }
 
     /**
@@ -117,28 +115,24 @@ public class AddressValidateRequest {
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAddress().add(newItem);
+     * getAddress().add(newItem);
      * </pre>
      *
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Address }
+     * {@link Address}
      *
      *
      */
-    public List<Address> getAddress() {
-        if(_address == null) {
-            _address = new ArrayList<Address>();
-        }
-        return this._address;
+    public Address getAddress() {
+        return this.address;
     }
 
     /**
-     * @param addresses
      */
-    public void setAddress(List<Address> addresses) {
-        _address = addresses;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     /**
@@ -150,7 +144,7 @@ public class AddressValidateRequest {
      *
      */
     public String getUSERID() {
-        return _userid;
+        return userid;
     }
 
     /**
@@ -162,7 +156,7 @@ public class AddressValidateRequest {
      *
      */
     public void setUSERID(String value) {
-        this._userid = value;
+        this.userid = value;
     }
 
     /**

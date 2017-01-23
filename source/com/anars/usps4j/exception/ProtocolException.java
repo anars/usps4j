@@ -1,6 +1,6 @@
 package com.anars.usps4j.exception;
 
-public class APIException
+public class ProtocolException
     extends USPSException {
 
     /**
@@ -9,14 +9,14 @@ public class APIException
      * @param enableSuppression
      * @param writableStackTrace
      */
-    public APIException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public ProtocolException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
     /**
      * @param cause
      */
-    public APIException(Throwable cause) {
+    public ProtocolException(Throwable cause) {
         super(cause);
     }
 
@@ -24,14 +24,14 @@ public class APIException
      * @param message
      * @param cause
      */
-    public APIException(String message, Throwable cause) {
+    public ProtocolException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
      * @param message
      */
-    public APIException(String message) {
+    public ProtocolException(String message) {
         super(message);
     }
 
@@ -39,13 +39,13 @@ public class APIException
      * @param message
      * @param errorCode
      */
-    public APIException(String message, String code) {
+    public ProtocolException(String message, String code) {
         super(message, code);
     }
 
     /**
      */
-    public APIException() {
+    public ProtocolException() {
         super();
     }
 }

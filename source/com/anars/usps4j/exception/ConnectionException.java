@@ -36,6 +36,14 @@ public class ConnectionException
     }
 
     /**
+     * @param message
+     * @param errorCode
+     */
+    public ConnectionException(String message, String code) {
+        super(message, code);
+    }
+
+    /**
      */
     public ConnectionException() {
         super();

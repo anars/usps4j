@@ -1,12 +1,9 @@
 package com.anars.usps4j;
 
-import com.anars.usps4j.enums.State;
-
-import java.math.BigInteger;
+import java.util.logging.Logger;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
@@ -16,51 +13,33 @@ import javax.xml.bind.annotation.XmlType;
  *
  * <p>The following schema fragment specifies the expected content contained within this class.
  *
- * <pre>
- * &lt;complexType name="AddressType"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="FirmName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="Address1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="Address2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="City" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="State" type="{}state" minOccurs="0"/&gt;
- *         &lt;element name="Urbanization" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="Zip5" type="{}zip5" minOccurs="0"/&gt;
- *         &lt;element name="Zip4" type="{}zip4" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="ID" type="{http://www.w3.org/2001/XMLSchema}integer" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AddressType", propOrder = { "_firmName", "_address1", "_address2", "_city", "_state", "_urbanization", "_zip5", "_zip4" })
+@XmlType(name = "AddressType", propOrder = { "_firmName", "_address1", "_address2", "_city", "_state", "_urbanization", "_zip5", "_zip4", "_deliveryPoint", "_carrierRoute" })
 public class Address {
 
+    private final transient Logger _logger = Logger.getLogger(getClass().getCanonicalName());
     @XmlElement(name = "FirmName")
     protected String _firmName;
     @XmlElement(name = "Address1")
-    protected String _address1;
+    protected String _address1 = "";
     @XmlElement(name = "Address2")
-    protected String _address2;
+    protected String _address2 = "";
     @XmlElement(name = "City")
-    protected String _city;
+    protected String _city = "";
     @XmlElement(name = "State")
     @XmlSchemaType(name = "string")
-    protected State _state;
+    protected String _state = "";
     @XmlElement(name = "Urbanization")
     protected String _urbanization;
     @XmlElement(name = "Zip5")
-    protected String _zip5;
+    protected String _zip5 = "";
     @XmlElement(name = "Zip4")
-    protected String _zip4;
-    @XmlAttribute(name = "ID")
-    protected int _id;
+    protected String _zip4 = "";
+    @XmlElement(name = "DeliveryPoint")
+    protected String _deliveryPoint;
+    @XmlElement(name = "CarrierRoute")
+    protected String _carrierRoute;
 
     /**
      * Gets the value of the firmName property.
@@ -166,7 +145,7 @@ public class Address {
      *     {@link State }
      *
      */
-    public State getState() {
+    public String getState() {
         return (_state);
     }
 
@@ -178,8 +157,8 @@ public class Address {
      *     {@link State }
      *
      */
-    public void setState(State state) {
-        _state = state;
+    public void setState(String state) {
+        _state = trim(state);
     }
 
     /**
@@ -202,8 +181,8 @@ public class Address {
      *     {@link String }
      *
      */
-    public void setUrbanization(String value) {
-        this._urbanization = value;
+    public void setUrbanization(String urbanization) {
+        _urbanization = trim(urbanization);
     }
 
     /**
@@ -255,27 +234,27 @@ public class Address {
     }
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the deliveryPoint property.
      *
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *
      */
-    public int getID() {
-        return (_id);
+    public String getDeliveryPoint() {
+        return (_deliveryPoint);
     }
 
     /**
-     * Sets the value of the id property.
+     * Gets the value of the carrierRoute property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
-    public void setID(int id) {
-        _id = id;
+    public String getCarrierRoute() {
+        return (_carrierRoute);
     }
 
     /**
@@ -284,5 +263,18 @@ public class Address {
      */
     private String trim(String text) {
         return (text.trim().replaceAll("\\s+", " "));
+    }
+
+    public String toString(){
+        String text = "[" + getClass().getCanonicalName();
+        text += "[firmName=" + _firmName + "],";
+        text += "[address1=" + _address1 + "],";
+        text += "[address2=" + _address2 + "],";
+        text += "[city=" + _city + "],";
+        text += "[state=" + _state + "],";
+        text += "[urbanization=" + _urbanization + "],";
+        text += "[zip5=" + _zip5 + "],";
+        text += "[zip4=" + _zip4 + "]]";
+        return(text);
     }
 }
