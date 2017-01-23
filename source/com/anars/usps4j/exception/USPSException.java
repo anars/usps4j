@@ -1,8 +1,12 @@
 package com.anars.usps4j.exception;
 
+/**
+ */
 public class USPSException
     extends Exception {
 
+    /**
+     */
     private String _code;
 
     /**

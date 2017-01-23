@@ -24,18 +24,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
-import javax.xml.namespace.QName;
 
 @XmlRegistry public class USPSClient {
 
     private final static String API_INSECURE_URL = "http://production.shippingapis.com/ShippingAPI.dll";
     private final static String API_SECURE_URL = "https://secure.shippingapis.com/ShippingAPI.dll";
-    private final static QName ADDRESS_QNAME = new QName("", "Address");
     private final Logger _logger = Logger.getLogger(getClass().getCanonicalName());
     private String _userID;
     private boolean _secure;
@@ -85,46 +81,7 @@ import javax.xml.namespace.QName;
         return (_secure);
     }
 
-    /**
-     * Create an instance of {@link Address}
-     *
-     */
-    public Address createAddress() {
-        return new Address();
-    }
 
-    /**
-     * Create an instance of {@link JAXBElement} {@code <} {@link Address} {@code >}}
-     *
-     */
-    @XmlElementDecl(namespace = "", name = "Address")
-    public JAXBElement<Address> createAddress(Address value) {
-        return new JAXBElement<Address>(ADDRESS_QNAME, Address.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link AddressValidateRequest }
-     *
-     */
-    public AddressValidateRequest createAddressValidateRequest() {
-        return new AddressValidateRequest();
-    }
-
-    /**
-     * Create an instance of {@link AddressValidateResponse }
-     *
-     */
-    public AddressValidateResponse createAddressValidateResponse() {
-        return new AddressValidateResponse();
-    }
-
-    /**
-     * Create an instance of {@link Address }
-     *
-     */
-    public Address createAddressValidateResponseAddress() {
-        return new Address();
-    }
 
     /**
      * @param api
@@ -223,6 +180,41 @@ import javax.xml.namespace.QName;
     }
 
     /**
+     * @param firmName
+     * @param address1
+     * @param address2
+     * @param city
+     * @param state
+     * @param urbanization
+     * @param zip5
+     * @param zip4
+     * @param deliveryPoint
+     * @param carrierRoute
+     * @return
+     * @throws USPSException
+     */
+    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4, boolean deliveryPoint, boolean carrierRoute) 
+        throws USPSException {
+        return (verifyAddress(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), deliveryPoint, carrierRoute));
+    }
+
+    /**
+     * @param firmName
+     * @param address1
+     * @param address2
+     * @param city
+     * @param state
+     * @param urbanization
+     * @param zip5
+     * @param zip4
+     * @return
+     * @throws USPSException
+     */
+    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4) 
+        throws USPSException {
+        return (verifyAddress(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), false, false));
+    }
+    /**
      * @param address
      * @return
      */
@@ -260,6 +252,23 @@ import javax.xml.namespace.QName;
         return (addressValidateResponse.getAddress());
     }
 
+    /**
+     * @param firmName
+     * @param address1
+     * @param address2
+     * @param city
+     * @param state
+     * @param urbanization
+     * @param zip5
+     * @param zip4
+     * @return
+     * @throws USPSException
+     */
+    public Address zipCodeLookup(String firmName, String address1, String address2, String city, String state, String urbanization) 
+        throws USPSException {
+        return (zipCodeLookup(new Address(firmName, address1, address2, city, state, urbanization, null, null)));
+    }
+    
     /**
      * @param addresses
      * @param includeOptionalElements

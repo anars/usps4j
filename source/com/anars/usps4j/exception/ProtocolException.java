@@ -1,5 +1,7 @@
 package com.anars.usps4j.exception;
 
+/**
+ */
 public class ProtocolException
     extends USPSException {
 

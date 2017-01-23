@@ -41,6 +41,22 @@ public class Address {
     @XmlElement(name = "CarrierRoute")
     protected String _carrierRoute;
 
+    public Address() {
+        
+    }
+    
+    public Address(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4) {
+        _firmName = firmName;
+        _address1 = address1;
+        _address2 = address2;
+        _city = city;
+        _state = state;
+        if(urbanization != null)
+            _urbanization = urbanization;
+        _zip5 = zip5;
+        _zip4 = zip4;
+    }
+
     /**
      * Gets the value of the firmName property.
      *
@@ -262,10 +278,15 @@ public class Address {
      * @return
      */
     private String trim(String text) {
+        if(text == null)
+            return ("");
         return (text.trim().replaceAll("\\s+", " "));
     }
 
-    public String toString() {
+    /**
+     * @return
+     */
+    @Override public String toString() {
         String text = "[" + getClass().getCanonicalName();
         text += "[firmName=" + _firmName + "],";
         text += "[address1=" + _address1 + "],";
@@ -274,7 +295,9 @@ public class Address {
         text += "[state=" + _state + "],";
         text += "[urbanization=" + _urbanization + "],";
         text += "[zip5=" + _zip5 + "],";
-        text += "[zip4=" + _zip4 + "]]";
+        text += "[zip4=" + _zip4 + "],";
+        text += "[deliveryPoint=" + _deliveryPoint + "],";
+        text += "[carrierRoute=" + _carrierRoute + "]]";
         return (text);
     }
 }
