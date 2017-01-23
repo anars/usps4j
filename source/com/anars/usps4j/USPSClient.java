@@ -6,7 +6,9 @@ import com.anars.usps4j.exception.ConnectionException;
 import com.anars.usps4j.exception.ProtocolException;
 import com.anars.usps4j.exception.USPSException;
 import com.anars.usps4j.request.AddressValidateRequest;
+import com.anars.usps4j.request.ZipCodeLookupRequest;
 import com.anars.usps4j.response.AddressValidateResponse;
+import com.anars.usps4j.response.ZipCodeLookupResponse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -139,6 +141,12 @@ import javax.xml.namespace.QName;
         }
         return (url);
     }
+
+    /**
+     * @param url
+     * @return
+     * @throws ConnectionException
+     */
     private String sendGet(String url)
         throws ConnectionException {
         _logger.log(Level.FINEST, url);
@@ -182,44 +190,6 @@ import javax.xml.namespace.QName;
     }
 
     /**
-     * @param address
-     * @return
-     */
-    public Address validateAddress(Address address)
-        throws USPSException {
-        return (validateAddress(address, false, false));
-    }
-
-    /**
-     * @param addresses
-     * @param includeOptionalElements
-     * @param returnCarrierRoute
-     * @return
-     */
-    public Address validateAddress(Address address, boolean includeOptionalElements, boolean returnCarrierRoute)
-        throws USPSException {
-        AddressValidateRequest addressValidateRequest = new AddressValidateRequest();
-        addressValidateRequest.setUSERID(_userID);
-        if(includeOptionalElements)
-            addressValidateRequest.setIncludeOptionalElements(includeOptionalElements);
-        if(returnCarrierRoute)
-            addressValidateRequest.setReturnCarrierRoute(returnCarrierRoute);
-        addressValidateRequest.setAddress(address);
-        String responseText = sendGet(buildURL("Verify", addressValidateRequest.toXML()));
-        hasError(responseText);
-        AddressValidateResponse addressValidateResponse = null;
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(AddressValidateResponse.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            addressValidateResponse = (AddressValidateResponse)unmarshaller.unmarshal(new StringReader(responseText));
-        }
-        catch(JAXBException jaxbException) {
-            throw new ProtocolException(jaxbException);
-        }
-        return (addressValidateResponse.getAddress());
-    }
-
-    /**
      * @param text
      * @throws APIException
      */
@@ -250,5 +220,68 @@ import javax.xml.namespace.QName;
                 message = text.substring(beginIndex + 12, endIndex);
             throw new AddressException(message);
         }
+    }
+
+    /**
+     * @param address
+     * @return
+     */
+    public Address verifyAddress(Address address)
+        throws USPSException {
+        return (verifyAddress(address, false, false));
+    }
+
+    /**
+     * @param addresses
+     * @param includeOptionalElements
+     * @param returnCarrierRoute
+     * @return
+     */
+    public Address verifyAddress(Address address, boolean includeOptionalElements, boolean returnCarrierRoute)
+        throws USPSException {
+        AddressValidateRequest addressValidateRequest = new AddressValidateRequest();
+        addressValidateRequest.setUSERID(_userID);
+        if(includeOptionalElements)
+            addressValidateRequest.setIncludeOptionalElements(includeOptionalElements);
+        if(returnCarrierRoute)
+            addressValidateRequest.setReturnCarrierRoute(returnCarrierRoute);
+        addressValidateRequest.setAddress(address);
+        String responseText = sendGet(buildURL("Verify", addressValidateRequest.toXML()));
+        hasError(responseText);
+        AddressValidateResponse addressValidateResponse = null;
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(AddressValidateResponse.class);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            addressValidateResponse = (AddressValidateResponse)unmarshaller.unmarshal(new StringReader(responseText));
+        }
+        catch(JAXBException jaxbException) {
+            throw new ProtocolException(jaxbException);
+        }
+        return (addressValidateResponse.getAddress());
+    }
+
+    /**
+     * @param addresses
+     * @param includeOptionalElements
+     * @param returnCarrierRoute
+     * @return
+     */
+    public Address zipCodeLookup(Address address)
+        throws USPSException {
+        ZipCodeLookupRequest zipCodeLookupRequest = new ZipCodeLookupRequest();
+        zipCodeLookupRequest.setUSERID(_userID);
+        zipCodeLookupRequest.setAddress(address);
+        String responseText = sendGet(buildURL("ZipCodeLookup", zipCodeLookupRequest.toXML()));
+        hasError(responseText);
+        ZipCodeLookupResponse zipCodeLookupResponse = null;
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(ZipCodeLookupResponse.class);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            zipCodeLookupResponse = (ZipCodeLookupResponse)unmarshaller.unmarshal(new StringReader(responseText));
+        }
+        catch(JAXBException jaxbException) {
+            throw new ProtocolException(jaxbException);
+        }
+        return (zipCodeLookupResponse.getAddress());
     }
 }

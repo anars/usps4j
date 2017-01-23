@@ -265,7 +265,7 @@ public class Address {
         return (text.trim().replaceAll("\\s+", " "));
     }
 
-    public String toString(){
+    public String toString() {
         String text = "[" + getClass().getCanonicalName();
         text += "[firmName=" + _firmName + "],";
         text += "[address1=" + _address1 + "],";
@@ -275,6 +275,6 @@ public class Address {
         text += "[urbanization=" + _urbanization + "],";
         text += "[zip5=" + _zip5 + "],";
         text += "[zip4=" + _zip4 + "]]";
-        return(text);
+        return (text);
     }
 }

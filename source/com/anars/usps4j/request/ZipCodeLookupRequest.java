@@ -28,8 +28,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="IncludeOptionalElements" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
- *         &lt;element name="ReturnCarrierRoute" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
  *         &lt;element name="Address" type="{}AddressType" maxOccurs="5"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="USERID" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -41,67 +39,15 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "_includeOptionalElements", "_returnCarrierRoute", "_address" })
-@XmlRootElement(name = "AddressValidateRequest")
-public class AddressValidateRequest {
+@XmlType(name = "", propOrder = { "_address" })
+@XmlRootElement(name = "ZipCodeLookupRequest")
+public class ZipCodeLookupRequest {
 
     private final transient Logger _logger = Logger.getLogger(getClass().getCanonicalName());
-    @XmlElement(name = "IncludeOptionalElements")
-    protected Boolean _includeOptionalElements;
-    @XmlElement(name = "ReturnCarrierRoute")
-    protected Boolean _returnCarrierRoute;
     @XmlElement(name = "Address", required = true)
     protected Address _address;
     @XmlAttribute(name = "USERID")
     protected String _userid;
-
-    /**
-     * Gets the value of the includeOptionalElements property.
-     *
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *
-     */
-    public Boolean isIncludeOptionalElements() {
-        return (_includeOptionalElements);
-    }
-
-    /**
-     * Sets the value of the includeOptionalElements property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *
-     */
-    public void setIncludeOptionalElements(Boolean includeOptionalElements) {
-        _includeOptionalElements = includeOptionalElements;
-    }
-
-    /**
-     * Gets the value of the returnCarrierRoute property.
-     *
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *
-     */
-    public Boolean isReturnCarrierRoute() {
-        return (_returnCarrierRoute);
-    }
-
-    /**
-     * Sets the value of the returnCarrierRoute property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *
-     */
-    public void setReturnCarrierRoute(Boolean returnCarrierRoute) {
-        _returnCarrierRoute = returnCarrierRoute;
-    }
 
     /**
      *
@@ -137,7 +83,7 @@ public class AddressValidateRequest {
     public String toXML() {
         String xml = null;
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(AddressValidateRequest.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(ZipCodeLookupRequest.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
             StringWriter stringWriter = new StringWriter();

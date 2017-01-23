@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "_address" })
-@XmlRootElement(name = "AddressValidateResponse")
-public class AddressValidateResponse {
+@XmlRootElement(name = "ZipCodeLookupResponse")
+public class ZipCodeLookupResponse {
 
     @XmlElement(name = "Address", required = true)
     protected Address _address;
