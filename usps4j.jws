@@ -26,5 +26,6 @@
    </list>
    <list n="listOfChildren">
       <hash><url n="URL" path="project.jpr"/></hash>
+      <hash><url n="URL" path="samples.jpr"/></hash>
    </list>
 </jws:workspace>

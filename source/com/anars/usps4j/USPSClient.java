@@ -36,6 +36,14 @@ import javax.xml.bind.annotation.XmlRegistry;
 
     /**
      */
+    public static final double VERSION = 0;
+
+    /**
+     */
+    public static final double BUILD = 0;
+
+    /**
+     */
     private final static String API_INSECURE_URL = "http://production.shippingapis.com/ShippingAPI.dll";
 
     /**
@@ -210,9 +218,9 @@ import javax.xml.bind.annotation.XmlRegistry;
      * @return
      * @throws USPSException
      */
-    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4, boolean deliveryPoint, boolean carrierRoute)
+    public Address addressValidate(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4, boolean deliveryPoint, boolean carrierRoute)
         throws USPSException {
-        return (verifyAddress(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), deliveryPoint, carrierRoute));
+        return (addressValidate(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), deliveryPoint, carrierRoute));
     }
 
     /**
@@ -227,18 +235,18 @@ import javax.xml.bind.annotation.XmlRegistry;
      * @return
      * @throws USPSException
      */
-    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4)
+    public Address addressValidate(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4)
         throws USPSException {
-        return (verifyAddress(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), false, false));
+        return (addressValidate(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), false, false));
     }
 
     /**
      * @param address
      * @return
      */
-    public Address verifyAddress(Address address)
+    public Address addressValidate(Address address)
         throws USPSException {
-        return (verifyAddress(address, false, false));
+        return (addressValidate(address, false, false));
     }
 
     /**
@@ -247,7 +255,7 @@ import javax.xml.bind.annotation.XmlRegistry;
      * @param returnCarrierRoute
      * @return
      */
-    public Address verifyAddress(Address address, boolean includeOptionalElements, boolean returnCarrierRoute)
+    public Address addressValidate(Address address, boolean includeOptionalElements, boolean returnCarrierRoute)
         throws USPSException {
         AddressValidateRequest addressValidateRequest = new AddressValidateRequest();
         addressValidateRequest.setUSERID(_userID);
