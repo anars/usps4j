@@ -39,7 +39,7 @@ public class APIException
 
     /**
      * @param message
-     * @param errorCode
+     * @param code
      */
     public APIException(String message, String code) {
         super(message, code);

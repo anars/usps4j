@@ -39,7 +39,7 @@ public class ProtocolException
 
     /**
      * @param message
-     * @param errorCode
+     * @param code
      */
     public ProtocolException(String message, String code) {
         super(message, code);

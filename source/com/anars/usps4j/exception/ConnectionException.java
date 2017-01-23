@@ -39,7 +39,7 @@ public class ConnectionException
 
     /**
      * @param message
-     * @param errorCode
+     * @param code
      */
     public ConnectionException(String message, String code) {
         super(message, code);

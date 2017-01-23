@@ -43,7 +43,7 @@ public class USPSException
 
     /**
      * @param message
-     * @param errorCode
+     * @param code
      */
     public USPSException(String message, String code) {
         super(message.trim());

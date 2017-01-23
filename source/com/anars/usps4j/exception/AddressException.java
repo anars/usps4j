@@ -39,7 +39,7 @@ public class AddressException
 
     /**
      * @param message
-     * @param errorCode
+     * @param code
      */
     public AddressException(String message, String code) {
         super(message, code);

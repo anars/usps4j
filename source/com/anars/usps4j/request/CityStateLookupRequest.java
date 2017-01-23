@@ -1,10 +1,14 @@
 package com.anars.usps4j.request;
 
-import java.math.BigInteger;
+import java.io.StringWriter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -13,174 +17,105 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * <p>Java class for anonymous complex type.
- *
- * <p>The following schema fragment specifies the expected content contained within this class.
- *
- * <pre>
- * &lt;complexType&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="ZipCode" maxOccurs="5"&gt;
- *           &lt;complexType&gt;
- *             &lt;complexContent&gt;
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *                 &lt;sequence&gt;
- *                   &lt;element name="Zip5" type="{}zip5"/&gt;
- *                 &lt;/sequence&gt;
- *                 &lt;attribute name="ID" type="{http://www.w3.org/2001/XMLSchema}integer" /&gt;
- *               &lt;/restriction&gt;
- *             &lt;/complexContent&gt;
- *           &lt;/complexType&gt;
- *         &lt;/element&gt;
- *       &lt;/sequence&gt;
- *       &lt;attribute name="USERID" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- *
- *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = { "zipCode" })
+@XmlType(name = "", propOrder = { "_zipCode" })
 @XmlRootElement(name = "CityStateLookupRequest")
 public class CityStateLookupRequest {
 
-    @XmlElement(name = "ZipCode", required = true)
-    protected List<CityStateLookupRequest.ZipCode> zipCode;
-    @XmlAttribute(name = "USERID")
-    protected String userid;
+    /**
+     */
+    private final transient Logger _logger = Logger.getLogger(getClass().getCanonicalName());
 
     /**
-     * Gets the value of the zipCode property.
-     *
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the zipCode property.
-     *
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getZipCode().add(newItem);
-     * </pre>
-     *
-     *
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link CityStateLookupRequest.ZipCode }
-     *
-     *
      */
-    public List<CityStateLookupRequest.ZipCode> getZipCode() {
-        if(zipCode == null) {
-            zipCode = new ArrayList<CityStateLookupRequest.ZipCode>();
-        }
-        return this.zipCode;
+    @XmlElement(name = "ZipCode", required = true)
+    protected CityStateLookupRequest.ZipCode _zipCode;
+
+    /**
+     */
+    @XmlAttribute(name = "USERID")
+    protected String _userid;
+
+    /**
+     * @return
+     */
+    public String getZipCode() {
+        if(_zipCode == null)
+            return ("");
+        return (_zipCode.getZip5());
     }
 
     /**
-     * Gets the value of the userid property.
-     *
+     * @param zip5
+     */
+    public void setZipCode(String zip5) {
+        _zipCode = new CityStateLookupRequest.ZipCode();
+        _zipCode.setZip5(zip5);
+    }
+
+    /**
      * @return
-     *     possible object is
-     *     {@link String }
-     *
      */
     public String getUSERID() {
-        return userid;
+        return (_userid);
     }
 
     /**
-     * Sets the value of the userid property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param userid
      */
-    public void setUSERID(String value) {
-        this.userid = value;
+    public void setUSERID(String userid) {
+        _userid = userid;
     }
 
     /**
-     * <p>Java class for anonymous complex type.
-     *
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     *
-     * <pre>
-     * &lt;complexType&gt;
-     *   &lt;complexContent&gt;
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-     *       &lt;sequence&gt;
-     *         &lt;element name="Zip5" type="{}zip5"/&gt;
-     *       &lt;/sequence&gt;
-     *       &lt;attribute name="ID" type="{http://www.w3.org/2001/XMLSchema}integer" /&gt;
-     *     &lt;/restriction&gt;
-     *   &lt;/complexContent&gt;
-     * &lt;/complexType&gt;
-     * </pre>
-     *
-     *
+     * @return
+     */
+    public String toXML() {
+        String xml = null;
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(CityStateLookupRequest.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+            StringWriter stringWriter = new StringWriter();
+            marshaller.marshal(this, stringWriter);
+            xml = stringWriter.toString();
+        }
+        catch(PropertyException propertyException) {
+            _logger.log(Level.SEVERE, "Unable to convert to XML string", propertyException);
+        }
+        catch(JAXBException jaxbException) {
+            _logger.log(Level.SEVERE, "Unable to convert to XML string", jaxbException);
+        }
+        return (xml);
+    }
+
+    /**
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = { "zip5" })
+    @XmlType(name = "", propOrder = { "_zip5" })
     public static class ZipCode {
 
+        /**
+         */
         @XmlElement(name = "Zip5", required = true)
-        protected String zip5;
-        @XmlAttribute(name = "ID")
-        protected BigInteger id;
+        protected String _zip5;
 
         /**
-         * Gets the value of the zip5 property.
-         *
          * @return
-         *     possible object is
-         *     {@link String }
-         *
          */
         public String getZip5() {
-            return zip5;
+            return (_zip5);
         }
 
         /**
-         * Sets the value of the zip5 property.
-         *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param zip5
          */
-        public void setZip5(String value) {
-            this.zip5 = value;
-        }
-
-        /**
-         * Gets the value of the id property.
-         *
-         * @return
-         *     possible object is
-         *     {@link BigInteger }
-         *
-         */
-        public BigInteger getID() {
-            return id;
-        }
-
-        /**
-         * Sets the value of the id property.
-         *
-         * @param value
-         *     allowed object is
-         *     {@link BigInteger }
-         *
-         */
-        public void setID(BigInteger value) {
-            this.id = value;
+        public void setZip5(String zip5) {
+            if(zip5 == null)
+                _zip5 = "";
+            else
+                _zip5 = zip5.trim().replaceAll("\\s+", " ");
         }
     }
 }

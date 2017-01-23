@@ -9,18 +9,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * <p>Java class for anonymous complex type.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "_address" })
 @XmlRootElement(name = "AddressValidateResponse")
 public class AddressValidateResponse {
 
+    /**
+     */
     @XmlElement(name = "Address", required = true)
     protected Address _address;
 
     /**
-     * Gets the value of the address property.
+     * @return
      */
     public Address getAddress() {
         return (_address);

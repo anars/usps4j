@@ -6,8 +6,10 @@ import com.anars.usps4j.exception.ConnectionException;
 import com.anars.usps4j.exception.ProtocolException;
 import com.anars.usps4j.exception.USPSException;
 import com.anars.usps4j.request.AddressValidateRequest;
+import com.anars.usps4j.request.CityStateLookupRequest;
 import com.anars.usps4j.request.ZipCodeLookupRequest;
 import com.anars.usps4j.response.AddressValidateResponse;
+import com.anars.usps4j.response.CityStateLookupResponse;
 import com.anars.usps4j.response.ZipCodeLookupResponse;
 
 import java.io.BufferedReader;
@@ -28,12 +30,28 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlRegistry;
 
+/**
+ */
 @XmlRegistry public class USPSClient {
 
+    /**
+     */
     private final static String API_INSECURE_URL = "http://production.shippingapis.com/ShippingAPI.dll";
+
+    /**
+     */
     private final static String API_SECURE_URL = "https://secure.shippingapis.com/ShippingAPI.dll";
+
+    /**
+     */
     private final Logger _logger = Logger.getLogger(getClass().getCanonicalName());
+
+    /**
+     */
     private String _userID;
+
+    /**
+     */
     private boolean _secure;
 
     /**
@@ -46,6 +64,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 
     /**
      * @param userID
+     * @param secure
      */
     public USPSClient(String userID, boolean secure) {
         super();
@@ -80,8 +99,6 @@ import javax.xml.bind.annotation.XmlRegistry;
     public boolean isSecure() {
         return (_secure);
     }
-
-
 
     /**
      * @param api
@@ -193,7 +210,7 @@ import javax.xml.bind.annotation.XmlRegistry;
      * @return
      * @throws USPSException
      */
-    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4, boolean deliveryPoint, boolean carrierRoute) 
+    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4, boolean deliveryPoint, boolean carrierRoute)
         throws USPSException {
         return (verifyAddress(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), deliveryPoint, carrierRoute));
     }
@@ -210,10 +227,11 @@ import javax.xml.bind.annotation.XmlRegistry;
      * @return
      * @throws USPSException
      */
-    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4) 
+    public Address verifyAddress(String firmName, String address1, String address2, String city, String state, String urbanization, String zip5, String zip4)
         throws USPSException {
         return (verifyAddress(new Address(firmName, address1, address2, city, state, urbanization, zip5, zip4), false, false));
     }
+
     /**
      * @param address
      * @return
@@ -259,21 +277,18 @@ import javax.xml.bind.annotation.XmlRegistry;
      * @param city
      * @param state
      * @param urbanization
-     * @param zip5
-     * @param zip4
      * @return
      * @throws USPSException
      */
-    public Address zipCodeLookup(String firmName, String address1, String address2, String city, String state, String urbanization) 
+    public Address zipCodeLookup(String firmName, String address1, String address2, String city, String state, String urbanization)
         throws USPSException {
         return (zipCodeLookup(new Address(firmName, address1, address2, city, state, urbanization, null, null)));
     }
-    
+
     /**
-     * @param addresses
-     * @param includeOptionalElements
-     * @param returnCarrierRoute
+     * @param address
      * @return
+     * @throws USPSException
      */
     public Address zipCodeLookup(Address address)
         throws USPSException {
@@ -292,5 +307,30 @@ import javax.xml.bind.annotation.XmlRegistry;
             throw new ProtocolException(jaxbException);
         }
         return (zipCodeLookupResponse.getAddress());
+    }
+
+    /**
+     * @param zip5
+     * @return
+     * @throws USPSException
+     */
+    public Address cityStateLookup(String zip5)
+        throws USPSException {
+        CityStateLookupRequest cityStateLookupRequest = new CityStateLookupRequest();
+        cityStateLookupRequest.setUSERID(_userID);
+        cityStateLookupRequest.setZipCode(zip5);
+        ;
+        String responseText = sendGet(buildURL("CityStateLookup", cityStateLookupRequest.toXML()));
+        hasError(responseText);
+        CityStateLookupResponse cityStateLookupResponse = null;
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(CityStateLookupResponse.class);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+            cityStateLookupResponse = (CityStateLookupResponse)unmarshaller.unmarshal(new StringReader(responseText));
+        }
+        catch(JAXBException jaxbException) {
+            throw new ProtocolException(jaxbException);
+        }
+        return (cityStateLookupResponse.getAddress());
     }
 }
