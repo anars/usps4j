@@ -26,38 +26,26 @@ import com.anars.usps4j.Address;
 import com.anars.usps4j.USPSClient;
 import com.anars.usps4j.exception.USPSException;
 
-public class AddressValidate1 {
+public class CityStateLookup1 {
 
-    public AddressValidate1() {
-        //
-        Address address = new Address();
-        address.setAddress1("350 5th Ave");
-        address.setAddress2("Suite 4400");
-        address.setCity("New York");
-        address.setState("NY");
-        // address.setZip5("10118");
-        //
+    public CityStateLookup1() {
         USPSClient uspsClient = new USPSClient("123XXX321");
         //
         try {
-            Address addressResponse = uspsClient.addressValidate(address);
+            Address addressResponse = uspsClient.cityStateLookup("10118");
             //
-            System.out.println("Address :");
-            System.out.println("---------");
-            System.out.println(addressResponse.getAddress2());
-            System.out.println(addressResponse.getAddress1());
+            System.out.println("City, State :");
+            System.out.println("-------------");
             System.out.print(addressResponse.getCity());
             System.out.print(", ");
             System.out.println(addressResponse.getState());
-            System.out.print(addressResponse.getZip5());
-            System.out.print("-");
-            System.out.println(addressResponse.getZip4());
+            System.out.println(addressResponse.getZip5());
         }
         catch(USPSException uspsException) {
             uspsException.printStackTrace();
         }
     }
     public static void main(String[] args) {
-        new AddressValidate1();
+        new CityStateLookup1();
     }
 }

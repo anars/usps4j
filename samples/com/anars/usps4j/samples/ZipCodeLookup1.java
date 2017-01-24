@@ -26,21 +26,20 @@ import com.anars.usps4j.Address;
 import com.anars.usps4j.USPSClient;
 import com.anars.usps4j.exception.USPSException;
 
-public class AddressValidate1 {
+public class ZipCodeLookup1 {
 
-    public AddressValidate1() {
+    public ZipCodeLookup1() {
         //
         Address address = new Address();
         address.setAddress1("350 5th Ave");
         address.setAddress2("Suite 4400");
         address.setCity("New York");
         address.setState("NY");
-        // address.setZip5("10118");
         //
         USPSClient uspsClient = new USPSClient("123XXX321");
         //
         try {
-            Address addressResponse = uspsClient.addressValidate(address);
+            Address addressResponse = uspsClient.zipCodeLookup(address);
             //
             System.out.println("Address :");
             System.out.println("---------");
@@ -58,6 +57,6 @@ public class AddressValidate1 {
         }
     }
     public static void main(String[] args) {
-        new AddressValidate1();
+        new ZipCodeLookup1();
     }
 }
